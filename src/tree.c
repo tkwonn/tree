@@ -70,7 +70,7 @@ int walk(const char *directory, const char *prefix, counter_t *counter) {
         if (!full_path) 
             errExit("malloc");
 
-        sprintf(full_path, "%s/%s", directory, file_dirent->d_name);
+        snprintf(full_path, PATH_MAX, "%s/%s", directory, file_dirent->d_name);
         
         if (lstat(full_path, &st) == -1) {
             free(full_path);
@@ -113,12 +113,12 @@ int walk(const char *directory, const char *prefix, counter_t *counter) {
         print_entry_name(current->name, current->path, current->st.st_mode);
         
         if (current->is_dir) {
-            new_prefix = malloc(strlen(prefix) + 5);
+            size_t new_prefix_size = strlen(prefix) + 5 + 1; // +5 for "│   " or "    "(since | is a multibyte letter), +1 for '\0'
+            new_prefix = malloc(new_prefix_size);
             if (!new_prefix)
                 errExit("malloc");
             
-            sprintf(new_prefix, "%s%s", prefix, 
-                    is_last ? "    " : "│   ");
+            snprintf(new_prefix, new_prefix_size, "%s%s", prefix, is_last ? "    " : "│   ");
             
             walk(current->path, new_prefix, counter);
             free(new_prefix);
