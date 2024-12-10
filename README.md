@@ -34,23 +34,39 @@ Usage: tree [-adpugstcrU] [--help] [directory ...]
 ## Example Output
 
 ```bash
-❯ ./tree /test
-/test
-├── a.txt
-├── b.txt
-├── c.txt
-├── hard_link
-└── soft_link -> b.txt
+❯ ./tree
+.
+├── Makefile
+├── README.md
+├── include
+│   ├── errors.h
+│   ├── options.h
+│   ├── print.h
+│   └── tree.h
+├── src
+│   ├── errors.c
+│   ├── options.c
+│   ├── print.c
+│   └── tree.c
+└── tree
 
-1 directories, 5 files
+3 directories, 11 files
 
-❯ ./tree -pugs /test
-[drwxr-xr-x tk        wheel         224]  /test
-├── [-rw-r--r-- tk        wheel           0]  a.txt
-├── [-rw-r--r-- tk        wheel           0]  b.txt
-├── [-rw-r--r-- tk        wheel           0]  c.txt
-├── [-rw-r--r-- tk        wheel           0]  hard_link
-└── [lrwxr-xr-x tk        wheel           5]  soft_link -> b.txt
+❯ ./tree -pugs
+[drwxr-xr-x tk        staff         256]  .
+├── [-rw-r--r-- tk        staff         312]  Makefile
+├── [-rw-r--r-- tk        staff        1607]  README.md
+├── [drwxr-xr-x tk        staff         192]  include
+│   ├── [-rw-r--r-- tk        staff        1004]  errors.h
+│   ├── [-rw-r--r-- tk        staff         568]  options.h
+│   ├── [-rw-r--r-- tk        staff        1131]  print.h
+│   └── [-rw-r--r-- tk        staff         581]  tree.h
+├── [drwxr-xr-x tk        staff         192]  src
+│   ├── [-rw-r--r-- tk        staff        1692]  errors.c
+│   ├── [-rw-r--r-- tk        staff        2155]  options.c
+│   ├── [-rw-r--r-- tk        staff        3968]  print.c
+│   └── [-rw-r--r-- tk        staff        5186]  tree.c
+└── [-rwxr-xr-x tk        staff       52248]  tree
 
-1 directories, 5 files
+3 directories, 11 files
 ```
