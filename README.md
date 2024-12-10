@@ -33,3 +33,24 @@ Usage: tree [-adpugstcrU] [--help] [directory ...]
 
 ## Example Output
 
+```bash
+❯ ./tree /test
+/test
+├── a.txt
+├── b.txt
+├── c.txt
+├── hard_link
+└── soft_link -> b.txt
+
+1 directories, 5 files
+
+❯ ./tree -pugs /test
+[drwxr-xr-x tk        wheel         224]  /test
+├── [-rw-r--r-- tk        wheel           0]  a.txt
+├── [-rw-r--r-- tk        wheel           0]  b.txt
+├── [-rw-r--r-- tk        wheel           0]  c.txt
+├── [-rw-r--r-- tk        wheel           0]  hard_link
+└── [lrwxr-xr-x tk        wheel           5]  soft_link -> b.txt
+
+1 directories, 5 files
+```
